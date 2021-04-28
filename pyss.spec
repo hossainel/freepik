@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['pyss.py'],
-             pathex=['E:\\xampp\\htdocs\\archive\\b_c\\pyss'],
+a = Analysis(['main.py'],
+             pathex=['E:\\pyss'],
              binaries=[],
              datas=[],
              hiddenimports=[],
