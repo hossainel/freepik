@@ -4,30 +4,38 @@ import base64
 import requests
 from glob import glob
 
-apiKey = 'myapikey from api.imgbb.com' # my API key
+apiKey = 'a108cad48026147bbdf3c604f8c38835' # my API key
 
 print("imgBB API Uploader")
 print("API Key: " + apiKey)
 
+def ups(fileLocation,apiKey,file_name):
+    retry=True
+    while retry:
+        try:
+            with open(fileLocation, "rb") as xfile:
+                url = "https://api.imgbb.com/1/upload"
+                payload = {
+                    "key": apiKey,
+                    "image": base64.b64encode(xfile.read()),
+                    "name": file_name,
+                }
+                res = requests.post(url, payload)
+            retry=False
+            return res
+        except: print('Retrying...')
+            
 def imgBB_upload(fileLocation):
     fileLocaion = fileLocation.replace('\\','/')
     file_name = fileLocaion[fileLocaion.rfind('/')+1:fileLocaion.rfind('.')]
-    with open(fileLocation, "rb") as xfile:
-        url = "https://api.imgbb.com/1/upload"
-        payload = {
-            "key": apiKey,
-            "image": base64.b64encode(xfile.read()),
-            "name": file_name,
-        }
-        res = requests.post(url, payload)
-
+    res=ups(fileLocation,apiKey,file_name)
     if res.status_code == 200:
         print("Server Response: " + str(res.status_code))
         print("Image Successfully Uploaded")
     else:
         print("ERROR")
         print("Server Response: " + str(res.status_code))
-        if not os.path.exists('wrr.txt'): open(folderLocation+'.txt','w')
+        if not os.path.exists(folderLocation+'tmp.txt'): open('wrr.txt','w')
         with open('wrr.txt','a+') as foc:
             foc.write('%s:%s\n'%(fileLocaion,res.status_code))
             foc.close()
