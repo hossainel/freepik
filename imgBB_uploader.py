@@ -4,7 +4,7 @@ import base64
 import requests
 from glob import glob
 
-apiKey = 'a108cad48026147bbdf3c604f8c38835' # my API key
+apiKey = 'the api key' # my API key
 
 print("imgBB API Uploader")
 print("API Key: " + apiKey)
@@ -35,7 +35,7 @@ def imgBB_upload(fileLocation):
     else:
         print("ERROR")
         print("Server Response: " + str(res.status_code))
-        if not os.path.exists(folderLocation+'tmp.txt'): open('wrr.txt','w')
+        if not os.path.exists('wrr.txt'): open('wrr.txt','w')
         with open('wrr.txt','a+') as foc:
             foc.write('%s:%s\n'%(fileLocaion,res.status_code))
             foc.close()
