@@ -4,7 +4,7 @@ import base64
 import requests
 from glob import glob
 
-apiKey = 'a108cad48026147bbdf3c604f8c38835' # my API key
+apiKey = 'myapikey' # my API key
 
 print("imgBB API Uploader")
 print("API Key: " + apiKey)
