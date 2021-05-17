@@ -27,6 +27,7 @@ def imgBB_upload(fileLocation):
     else:
         print("ERROR")
         print("Server Response: " + str(res.status_code))
+        if not os.path.exists('wrr.txt'): open(folderLocation+'.txt','w')
         with open('wrr.txt','a+') as foc:
             foc.write('%s:%s\n'%(fileLocaion,res.status_code))
             foc.close()
