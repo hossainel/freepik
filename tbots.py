@@ -3,7 +3,7 @@ from glob import glob
 from tqdm import tqdm
 class vCards:
     TOKEN = '<your bot token>'
-    cid = 'channel ID'
+    cid = '<chat ID>'
     def __init__(self):
         self.tb = telebot.TeleBot(self.TOKEN)
 
@@ -14,10 +14,10 @@ class vCards:
             self.tb.send_document(self.cid,Tfile)
     def sendFolder(self,folderName,fileType='.*'):
         for i in tqdm(glob('%s/*%s'%(folderName,fileType))):
-            #try:
-            self.sendDoc(i)
-                #self.pf('[Success] %s'%i)
-            #except: self.pf('[Failed] %s'%i)
+            try:
+                self.sendDoc(i)
+                self.pf('[Success] %s'%i)
+            except: self.pf('[Failed] %s'%i)
 
 v = vCards()
 folder_name = input('Folder->')
